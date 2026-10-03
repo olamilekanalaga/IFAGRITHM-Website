@@ -1,0 +1,21 @@
+[Unit]
+Description=IFAGRITHM network store (applications of record)
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+User=ifg-network
+Group=ifg-network
+WorkingDirectory=/opt/ifg-network
+EnvironmentFile=/opt/ifg-network/.env
+ExecStart=/usr/bin/node /opt/ifg-network/service.js
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/ifg-network
+
+[Install]
+WantedBy=multi-user.target

@@ -6,3 +6,13 @@ out/
 *.tsbuildinfo
 .vercel/
 verification/
+.vercel
+
+# local token files (never commit)
+*.env
+!*.example.env
+c.txt
+shot-*.png
+shot-*.mjs
+IFAGRITHM-*.png
+test-*.mjs
