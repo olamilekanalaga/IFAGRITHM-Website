@@ -14,7 +14,8 @@ test('store HTTP, authentication, persistence, claims, review races, and client 
   // A new production database is owned by this role. PGlite has one pre-existing database.
   await db.exec('CREATE ROLE ifagrithm_owner; CREATE ROLE ifagrithm_app; GRANT USAGE, CREATE ON SCHEMA public TO ifagrithm_owner;');
   const setup = await readFile(new URL('../remote/db-setup.sh', import.meta.url), 'utf8');
-  const schema = setup.match(/--dbname=ifagrithm <<'SQL'\n([\s\S]*?)\nSQL/)[1];
+  // Tolerate CRLF checkouts (Windows) — the heredoc lines may end with \r.
+  const schema = setup.match(/--dbname=ifagrithm <<'SQL'\r?\n([\s\S]*?)\r?\nSQL/)[1];
   await db.exec(schema);
   await db.exec('SET ROLE ifagrithm_app;');
   const sql = async (strings, ...values) => {

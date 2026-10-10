@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import { validateApplication, validateEnquiry, validId } from "./validation.js";
 import { readJson, RequestError } from "./http.js";
 
-export function createStoreServer({ sql, secret, resendKey = "", resendFrom = "onboarding@resend.dev", claimBase = "https://ifagrithm-seven.vercel.app", enquiryNotifyEmail = "" }) {
+export function createStoreServer({ sql, secret, resendKey = "", resendFrom = "onboarding@resend.dev", claimBase = "https://www.ifagrithm.xyz", enquiryNotifyEmail = "" }) {
 if (typeof secret !== "string" || !secret) throw new Error("STORE_SECRET is required.");
 const SECRET = secret;
 const RESEND_KEY = resendKey;
@@ -75,7 +75,7 @@ function mailHtml(app, claimUrl) {
       The link opens your card studio: add your photo or X handle, then download your card — sized for X posts.
       Your serial is ${escapeHtml(app.serial)}.
     </p>
-    <p style="font-size:12px;color:#6f6c60;margin:28px 0 0;">Web3 Research &amp; Intelligence · ifagrithm.site</p>
+    <p style="font-size:12px;color:#6f6c60;margin:28px 0 0;">Web3 Research &amp; Intelligence · ifagrithm.xyz</p>
   </div>
 </body></html>`;
 }
@@ -110,7 +110,7 @@ function declineHtml(app) {
       We read every application carefully. This time round we are not moving forward — the network is small
       and the fit has to be right for both sides. That can change: when we open new desks, you are welcome to apply again.
     </p>
-    <p style="font-size:12px;color:#6f6c60;margin:28px 0 0;">Web3 Research &amp; Intelligence · ifagrithm.site</p>
+    <p style="font-size:12px;color:#6f6c60;margin:28px 0 0;">Web3 Research &amp; Intelligence · ifagrithm.xyz</p>
   </div>
 </body></html>`;
 }
